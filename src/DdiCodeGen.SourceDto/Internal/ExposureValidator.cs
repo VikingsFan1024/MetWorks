@@ -41,25 +41,25 @@ namespace DdiCodeGen.SourceDto.Internal
             string toolId)
         {
             if (canonical == null)
-                return NormalizationResult<NamedInstanceDto>.Fail(new NormalizationError("Canonical NamedInstanceDto is null", raw?.Provenance?.Entries?.LastOrDefault()));
+                return NormalizationResult<NamedInstanceDto>.Fail(new NormalizationError("Canonical NamedInstanceDto is null", raw?.ProvenanceStack?.Entries?.LastOrDefault()));
 
-            if (string.IsNullOrWhiteSpace(canonical.ExposeAsInterface))
+            if (string.IsNullOrWhiteSpace(canonical.ExposeAsInterfaceName))
                 return NormalizationResult<NamedInstanceDto>.Ok(canonical);
 
-            var iface = ResolveInterface(canonical.ExposeAsInterface, canonicalNamespaces);
+            var iface = ResolveInterface(canonical.ExposeAsInterfaceName, canonicalNamespaces);
             if (iface == null)
             {
                 var err = new NormalizationError(
-                    $"ExposeAsInterface '{canonical.ExposeAsInterface}' does not resolve to a known interface",
-                    raw?.Provenance?.Entries?.LastOrDefault());
+                    $"ExposeAsInterface '{canonical.ExposeAsInterfaceName}' does not resolve to a known interface",
+                    raw?.ProvenanceStack?.Entries?.LastOrDefault());
                 return NormalizationResult<NamedInstanceDto>.Fail(err);
             }
 
             if (!ConcreteTypeImplementsInterface(canonical.Type, iface, canonicalNamespaces))
             {
                 var err = new NormalizationError(
-                    $"Type '{canonical.Type}' does not implement interface '{canonical.ExposeAsInterface}'",
-                    raw?.Provenance?.Entries?.LastOrDefault());
+                    $"Type '{canonical.Type}' does not implement interface '{canonical.ExposeAsInterfaceName}'",
+                    raw?.ProvenanceStack?.Entries?.LastOrDefault());
                 return NormalizationResult<NamedInstanceDto>.Fail(err);
             }
 

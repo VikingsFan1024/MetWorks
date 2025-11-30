@@ -19,18 +19,18 @@ public sealed record RawProvenanceEntry(
 );
 
 public sealed record RawProvenanceStack(
-    int? Version,
-    IReadOnlyList<RawProvenanceEntry>? Entries
+    IReadOnlyList<RawProvenanceEntry> Entries,
+    int Version = 1
 );
 
 // Top level configuration (maps to the YAML root)
 public sealed record RawConfigurationDto(
     RawCodeGenDto? CodeGen,
-    IReadOnlyList<RawAssemblyDto>? Assemblies,
-    IReadOnlyList<RawNamedInstanceDto>? NamedInstances,
-    IReadOnlyList<RawNamespaceDto>? Namespaces,
+    IReadOnlyList<RawAssemblyDto> Assemblies,
+    IReadOnlyList<RawNamedInstanceDto> NamedInstances,
+    IReadOnlyList<RawNamespaceDto> Namespaces,
     string? SourcePath,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
 // codeGen section
@@ -40,14 +40,14 @@ public sealed record RawCodeGenDto(
     string? ResourceProvider,
     string? Namespace,
     bool? FailFast,
-    IReadOnlyList<RawCodeGenEnumsDto>? Enums,
-    RawProvenanceStack? Provenance
+    IReadOnlyList<RawCodeGenEnumsDto> Enums,
+    RawProvenanceStack? ProvenanceStack
 );
 
 public sealed record RawCodeGenEnumsDto(
     string? EnumName,
     string? Scope,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
 // assemblies
@@ -56,15 +56,15 @@ public sealed record RawAssemblyDto(
     string? FullName,
     string? Path,
     bool? Primitive,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
 // namespaces
 public sealed record RawNamespaceDto(
     string? Namespace,
-    IReadOnlyList<RawTypeDto>? Types,
-    IReadOnlyList<RawInterfaceDto>? Interfaces,
-    RawProvenanceStack? Provenance
+    IReadOnlyList<RawTypeDto> Types,
+    IReadOnlyList<RawInterfaceDto> Interfaces,
+    RawProvenanceStack? ProvenanceStack
 );
 
 // types within namespaces
@@ -73,44 +73,35 @@ public sealed record RawTypeDto(
     string? FullName,
     string? Assembly,
     string? TypeKind,
-    int? GenericArity,
-    IReadOnlyList<string>? GenericParameterNames,
-    IReadOnlyList<RawConstructorSpecDto>? Constructors,
-    IReadOnlyList<RawInitializerDto>? Initializers,
-    IReadOnlyList<string>? Attributes,
-    IReadOnlyList<string>? ImplementedInterfaces,
+    IReadOnlyList<RawInitializerDto> Initializers,
+    IReadOnlyList<string> Attributes,
+    IReadOnlyList<string> ImplementedInterfaces,
     bool? Assignable,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
-// constructors (per earlier drafts; present in raw to reflect any input or future YAML)
-public sealed record RawConstructorSpecDto(
-    IReadOnlyList<RawParameterDto>? Parameters,
-    RawProvenanceStack? Provenance,
-    string? VisibilityHint
-);
 
 // initializers and parameters
 public sealed record RawInitializerDto(
     string? Initializer,
     bool? Eager,
     int? Order,
-    IReadOnlyList<RawParameterDto>? Parameters,
-    RawProvenanceStack? Provenance
+    IReadOnlyList<RawParameterDto> Parameters,
+    RawProvenanceStack? ProvenanceStack
 );
 
 public sealed record RawParameterDto(
     string? Parameter,
     string? Type,
     string? Interface,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
 // interfaces declared in namespaces
 public sealed record RawInterfaceDto(
     string? Interface,
     string? Assembly,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
 // named instances
@@ -120,21 +111,21 @@ public sealed record RawNamedInstanceDto(
     string? AssignmentMode,
     string? Initializer,
     bool? EagerLoad,
-    string? ExposeAsInterface,   // renamed in raw model
+    string? ExposeAsInterfaceName,   // renamed in raw model
     bool? FailFast,
-    RawNamedInstanceAssignmentDto[]? Assignments,
-    RawNamedInstanceElementDto[]? Elements,
-    RawProvenanceStack? Provenance
+    IReadOnlyList<RawNamedInstanceAssignmentDto> Assignments,
+    IReadOnlyList<RawNamedInstanceElementDto> Elements,
+    RawProvenanceStack? ProvenanceStack
 );
 public sealed record RawNamedInstanceAssignmentDto(
     string? Assignment,
     string? Value,
     string? NamedInstance,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );
 
 public sealed record RawNamedInstanceElementDto(
     string? Value,
     string? NamedInstance,
-    RawProvenanceStack? Provenance
+    RawProvenanceStack? ProvenanceStack
 );

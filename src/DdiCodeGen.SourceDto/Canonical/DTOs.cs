@@ -81,8 +81,6 @@ public sealed record TypeDto(
     string FullName,
     string Assembly,
     string TypeKind,
-    int GenericArity,
-    IReadOnlyList<string> GenericParameterNames,
     IReadOnlyList<InitializerDto> Initializers,
     IReadOnlyList<string> Attributes,
     IReadOnlyList<string> ImplementedInterfaces,
@@ -120,10 +118,10 @@ public sealed record NamedInstanceDto(
     string AssignmentMode,
     string? Initializer,
     bool EagerLoad,
-    string? ExposeAsInterface,   // renamed to be explicit
+    string? ExposeAsInterfaceName,   // renamed to be explicit
     bool FailFast,
-    NamedInstanceAssignmentDto[] Assignments,
-    NamedInstanceElementDto[] Elements,
+    IReadOnlyList<NamedInstanceAssignmentDto> Assignments,
+    IReadOnlyList<NamedInstanceElementDto> Elements,
     ProvenanceStack ProvenanceStack
 );
 
