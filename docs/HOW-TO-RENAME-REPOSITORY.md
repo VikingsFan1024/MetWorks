@@ -51,14 +51,14 @@ After renaming on GitHub, you'll need to update references to the repository nam
 ### Files That MUST Be Updated:
 
 #### 1. **README.md**
-- Line 1: Update the title `# MetWorks` to your new name
-- Line 8: Update the clone command URL
+- Update the main title (top of file) from `# MetWorks` to your new repository name
+- Update the clone command in the Quickstart section:
   ```markdown
   git clone https://github.com/VikingsFan1024/NewRepoName.git
   ```
 
 #### 2. **CONTRIBUTING.md** (if applicable)
-- Line 23, 36: Update references to `MetWorks.sln` if you're also renaming the solution file
+- Update references to `MetWorks.sln` in the solution validation commands if you're also renaming the solution file
 
 ### Files That May Need Updates (depending on new name):
 

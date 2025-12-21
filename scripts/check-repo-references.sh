@@ -50,7 +50,7 @@ search_pattern() {
             --exclude="*.dll" \
             --exclude="*.exe" \
             --exclude="package-lock.json" \
-            --exclude="check-repo-references.sh" \
+            --exclude="*repo-references*" \
             . 2>/dev/null | head -20
         
         if [ "$count" -gt 20 ]; then
