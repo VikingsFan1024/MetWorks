@@ -35,7 +35,7 @@ Monorepo for MetWorks projects. Each assembly lives under `src/<AssemblyName>` a
 
 ## Conventions
 
-- One Visual Studio solution per assembly under `src/<AssemblyName>/`
+- One Visual Studio project per assembly under `src/<AssemblyName>/`
 - Keep implementation projects under `src/<AssemblyName>/` and tests under `tests/<AssemblyName.Tests>/`
 - Use `dotnet user-secrets` for local development; use a secret manager for staging/production
 
