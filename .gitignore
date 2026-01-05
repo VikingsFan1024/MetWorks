@@ -440,3 +440,4 @@ generated/
 .act.env
 docs/journal/
 docs/*.odt
+.vscode/

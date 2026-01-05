@@ -1,0 +1,13 @@
+{
+  "GenerationTimeRoundTripUtc": "2026-01-01T12:00:00.0000000Z",
+  "Namespace": "ServiceRegistry",
+  "ContainerClass": "Registry",
+  "TemplateRequested": "Elements.Initializer",
+  "Instance":
+    {
+      "Name": "TheUdpListenerSettings",
+      "ClassQualified": "Settings.SettingConfiguration",
+      "IsArray": true,
+      "ElementsConstructionExpression": "new Settings.SettingConfiguration[] { registry.GetUdpTemperatureSetting_Internal(), registry.GetUdpWindspeedSetting_Internal(), registry.GetUdpPressureSetting_Internal(), registry.GetUdpPrecipitationSetting_Internal(), registry.GetUdpDistanceSetting_Internal() }"
+    }
+  }

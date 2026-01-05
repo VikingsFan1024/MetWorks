@@ -1,0 +1,7 @@
+[*.cs]
+
+# CS1591: Missing XML comment for publicly visible type or member
+dotnet_diagnostic.CS1591.severity = warning
+
+# CS1951: Expression tree lambda parameter name is not used
+dotnet_diagnostic.CS1951.severity = warning

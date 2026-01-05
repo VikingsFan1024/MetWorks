@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>Generator</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateStore\TemplateStore-DdiCodeGen-Src.csproj" />
+    <ProjectReference Include="..\SyntaxLoader\SyntaxLoader-DdiCodeGen-Src.csproj" />
+    <ProjectReference Include="..\Shared\Shared-DdiCodeGen-Src.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Handlebars.Net" />
+  </ItemGroup>
+</Project>

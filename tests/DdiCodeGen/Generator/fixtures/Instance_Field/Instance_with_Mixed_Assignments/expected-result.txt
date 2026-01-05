@@ -1,0 +1,14 @@
+// Template:            Instance.Field
+// Template:            File.Header
+// Version:             1.1
+// Template Requested:  Accessors
+// Generated On:        2026-01-01T12:00:00.0000000Z
+#nullable enable
+
+namespace ServiceRegistry
+{
+    public partial class Registry
+    {
+        private Settings.SettingConfiguration _UdpTemperatureSettingInstance;
+    }
+}

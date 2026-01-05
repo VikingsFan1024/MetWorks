@@ -182,17 +182,15 @@ Input: RootConfig DTO and resolved outputPath (string).
 Output: List<string> of generated file paths.
 
 Emission patterns
-Registry class: AddDeclarativeServices(this IServiceCollection services) that registers types and named instances.
+Registry class: Partial class with CreateAll(), InitializeAllAsync(), and DisposeAll() methods.
 
-Factory lambdas: for assignmentMode: Initializer generate sp => new Concrete(...) or sp => { /* call initializer */ }.
+Instance factories: Static factory methods that create instances via parameterless constructors or element-driven construction.
 
-Expose as interface: services.AddSingleton<IInterface, Concrete>(sp => ...) or services.AddSingleton(typeof(IInterface), sp => ...).
+Instance fields: Private backing fields with Register/Get accessor methods (external returns interface, internal returns concrete type).
 
-Primitive arrays: services.AddSingleton<string[]>(new[] { "a", "b" });
+Initializers: Async initialization methods that call InitializeAsync on instances with assignments.
 
-Named instance arrays: build arrays by resolving named instances or emitting static arrays.
-
-Eager load: emit a small hosted service or startup hook that resolves eager instances at startup.
+Elements initializers: Array construction logic for element-driven instances (primitive arrays and named instance arrays).
 
 Diagnostics: if failFast is true, generator should surface missing required fields as errors (console exit or context.ReportDiagnostic for source generator).
 
@@ -270,15 +268,15 @@ Creates a TemplateEngine and a diagnostics list, ensures the output directory ex
 
 Runs a sequence of pipelines that map DTOs → descriptors → token maps → template renders → atomic file writes:
 
-PrimitiveArray pipeline (members → grouped outer files).
+Registry pipeline (Registry.g.cs + Registry.Accessors.g.cs).
 
-NamedInstanceAccessor pipeline (function snippets → accessor class).
+Instance factory pipeline (per-instance *_InstanceFactory.g.cs files).
 
-Registry pipeline (member fragments → aggregate registry files).
+Instance field pipeline (per-instance *_InstanceField.g.cs files).
 
-Registration fragments pipeline (fragment files + aggregate registration file).
+Initializer pipeline (per-instance *_Initializer.g.cs files for assignment-driven instances).
 
-Initializer pipeline (invokers → aggregate initializer file).
+Elements initializer pipeline (per-instance *_ElementsInitializer.g.cs files for element-driven arrays).
 
 Collects diagnostics throughout and writes generated .g.cs files using FileHelpers.WriteFileAtomically.
 
@@ -427,7 +425,7 @@ Runtime behavior: path resolution, diagnostics, exit codes.
 
 How to run locally: dotnet run --project tools/CodeGenConsole and how to inspect diagnostics.
 
-How to add templates: template names used (PrimitiveArray.Member, PrimitiveArray, NamedInstanceAccessor.Function, Registry.Member, Registry, Registration.Fragment, Registration, Initializer.Invoker, Initializer) and required outer tokens.
+How to add templates: active template names are Registry.hbs, Registry.Accessors.hbs, Registry.InstanceFactory.hbs, Registry.InstanceField.hbs, Assignments.Initializer.hbs, Elements.Initializer.hbs, and various NamedInstanceAccessor templates.
 
 Quick checklist before committing changes
 [ ] Replace direct generatedCodePath usage with ResolveGeneratedPath.

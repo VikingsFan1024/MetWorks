@@ -1,9 +1,0 @@
-global using Xunit;
-global using System;
-global using System.IO;
-global using DdiCodeGen.Dtos;
-global using DdiCodeGen.Dtos.Raw;
-global using DdiCodeGen.Dtos.Internal;
-global using DdiCodeGen.Dtos.Canonical;
-global using System.Linq;
-global using System.Collections.Generic;

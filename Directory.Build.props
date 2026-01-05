@@ -8,6 +8,9 @@
     <!-- Treat warnings as errors for stricter builds -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
+    <!-- Warnings to exclude from error treatment -->
+    <NoWarn>$(NoWarn);CS1491;CS1591</NoWarn>
+
     <!-- Analyzer settings -->
     <AnalysisLevel>latest</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>

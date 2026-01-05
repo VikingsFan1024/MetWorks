@@ -1,11 +1,10 @@
+global using static DdiCodeGen.TemplateStore.TemplateDictionary;
+global using static YamlTestHelper;
+
 global using Xunit;
 global using System;
-global using DdiCodeGen.Dtos;
-global using DdiCodeGen.Dtos.Raw;
-global using DdiCodeGen.Dtos.Internal;
-global using DdiCodeGen.Dtos.Canonical;
-global using DdiCodeGen.Generator;
-global using System.Collections.Generic;
-global using System.Linq;
-global using DdiCodeGen.TemplateStore;
 global using System.IO;
+global using DdiCodeGen.Generator;
+global using DdiCodeGen.TemplateStore;
+global using System.Text.Json;
+global using DdiCodeGen.SyntaxLoader;

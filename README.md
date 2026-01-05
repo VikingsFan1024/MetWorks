@@ -31,6 +31,8 @@ Monorepo for MetWorks projects. Each assembly lives under `src/<AssemblyName>` a
 - `tests/` — unit and integration tests
 - `.github/workflows/` — CI configurations (GitHub Actions)
 - `docs/` — design notes and conventions
+  - [docs/declarative-di.md](./docs/declarative-di.md) — DDI implementation reference
+  - [docs/DDI-FUTURE-FEATURES.md](./docs/DDI-FUTURE-FEATURES.md) — Planned DDI enhancements
 - `Directory.Build.props` — shared build settings
 
 ## Conventions

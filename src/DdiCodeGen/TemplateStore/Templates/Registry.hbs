@@ -1,15 +1,16 @@
-// Registry
-// {{GeneratedHeader}}
-#nullable enable
+// Template:            Registry
+// Version:             1.1
+// Template Requested:  {{TemplateRequested}}
+{{> File.Header}}
 using System.Threading.Tasks;
 
-namespace {{GeneratedNamespace}}
+namespace {{Namespace}}
 {
     // The Registry class orchestrates the full lifecycle of all named instances.
     // Phase 1: Creation (synchronous)
     // Phase 2: Initialization (asynchronous)
     // Phase 3: Disposal (optional)
-    public partial class {{RegistryClassName}}
+    public partial class {{ContainerClass}}
     {
         // Phase 1: Creation (synchronous, safe).
         // Each instance is created via its dedicated InstanceFactory.
@@ -17,7 +18,7 @@ namespace {{GeneratedNamespace}}
         public void CreateAll()
         {
             {{#each Instances}}
-                {{NamedInstanceName}}_InstanceFactory.Create(this);
+            {{Name}}_InstanceFactory.Create(this);
             {{/each}}
         }
 
@@ -28,7 +29,7 @@ namespace {{GeneratedNamespace}}
         {
             {{#each Instances}}
                 {{#if HasAssignments}}
-                    await {{NamedInstanceName}}_Initializer.Initialize_{{NamedInstanceName}}Async(this);
+            await {{Name}}_Initializer.Initialize_{{Name}}Async(this);
                 {{/if}}
             {{/each}}
         }
@@ -39,7 +40,7 @@ namespace {{GeneratedNamespace}}
         {
             {{#each Instances}}
                 {{#if HasDisposable}}
-                    {{NamedInstanceName}}_Disposer.Dispose(this);
+                    {{Name}}_Disposer.Dispose(this);
                 {{/if}}
             {{/each}}
         }

@@ -1,6 +1,7 @@
-# DdiCodeGen.SourceDto
+# DdiCodeGen.Dtos
 
-This assembly contains all canonical Data Transfer Objects (DTOs) used across MetWorks solutions.
+This assembly contains all Data Transfer Objects (DTOs) used across in the
+metworks-ddi-gen solution.
 
 ## Principles
 - **Single source of truth**: DTOs are defined here only.

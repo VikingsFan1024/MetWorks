@@ -1,0 +1,118 @@
+{
+  "GenerationTimeRoundTripUtc": "2026-01-01T12:00:00.0000000Z",
+  "TemplateRequested": "Registry",
+  "Namespace": "ServiceRegistry",
+  "ContainerClass": "Registry",
+  "Instances": [
+        {
+            "Name": "RootCancellationTokenSource",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheFileLogger",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheUdpPortSetting",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheUdpPortSettings",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TemperatureOptions",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "UdpTemperatureSetting",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "WindspeedOptions",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "UdpWindspeedSetting",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "PressureOptions",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "UdpPressureSetting",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "PrecipitationOptions",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "UdpPrecipitationSetting",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "DistanceOptions",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "UdpDistanceSetting",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheUdpListenerSettings",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheAppDataSettingOverridesProvider",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheUDPSettingsRepository",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheUdpListener",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "ThePostgresConnection",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "ThePostgresSettings",
+            "HasAssignments": false,
+            "HasDisposable": false
+        },
+        {
+            "Name": "ThePostgresSettingsRepository",
+            "HasAssignments": true,
+            "HasDisposable": false
+        },
+        {
+            "Name": "TheRawPacketRecordTypedInPostgresOut",
+            "HasAssignments": true,
+            "HasDisposable": false
+        }
+    ]
+}

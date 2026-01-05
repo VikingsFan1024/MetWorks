@@ -1,47 +1,64 @@
-using System.Reflection;
-namespace DdiCodeGen.TemplateStore
+namespace DdiCodeGen.TemplateStore;
+
+/// <summary>
+/// Provides access to embedded templates stored in this assembly.
+/// </summary>
+public sealed class TemplateStore : ITemplateStore
 {
-    using System;
+    readonly Assembly _assembly;
+    readonly string[] _resourceNames;
     /// <summary>
-    /// Provides access to embedded templates stored in this assembly.
+    /// Initializes a new instance of the <see cref="TemplateStore"/> class
+    /// which provides access to embedded templates in this assembly.
     /// </summary>
-    public sealed class TemplateStore : ITemplateStore
+    public TemplateStore()
     {
-        private readonly Assembly _assembly;
+        _assembly = typeof(TemplateStore).Assembly;
+        _resourceNames = _assembly.GetManifestResourceNames();
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateStore"/> class
-        /// which provides access to embedded templates in this assembly.
-        /// </summary>
-        public TemplateStore()
+    /// <summary>
+    /// Gets the content of an embedded template resource by name.
+    /// </summary>
+    public string GetTemplateByTemplateEnum(TemplateEnum templateEnum)
+    {
+        return GetTemplateByResourceName(EnumToInfo[templateEnum].ResourceName);
+    }
+    public string GetTemplateByTemplateName(string templateName)
+    {
+        var templateInfo = EnumToInfo.Values
+            .FirstOrDefault(t => t.Name == templateName);            
+        if (templateInfo.Equals(default))
         {
-            _assembly = typeof(TemplateStore).Assembly;
+            throw new ArgumentException(
+                $"Template '{templateName}' not found in TemplateStore.",
+                nameof(templateName)
+            );
         }
-
-        /// <summary>
-        /// Gets the content of an embedded template resource by name.
-        /// </summary>
-        /// <param name="name">The template name without the ".tplt" extension.</param>
-        /// <returns>The template content as a string.</returns>
-        public string GetTemplate(string name)
+        return GetTemplateByResourceName(templateInfo.ResourceName);
+    }
+    public string GetTemplate(string templateName) => GetTemplateByTemplateName(templateName);
+    public string GetTemplate(TemplateEnum templateEnum) => GetTemplateByTemplateEnum(templateEnum);
+    public string GetTemplateByResourceName(string resourceName)
+    {
+        using var stream = _assembly.GetManifestResourceStream(resourceName);
+        if (stream == null)
         {
-            var resourceName = _assembly.GetManifestResourceNames()
-                .FirstOrDefault(r => r.Equals($"TemplateStore.Templates.{name}.hbs", StringComparison.OrdinalIgnoreCase));
-
-            if (resourceName == null)
-                throw new InvalidOperationException($"Template '{name}.hbs' not found.");
-
-            using var stream = _assembly.GetManifestResourceStream(resourceName)!;
-            using var reader = new StreamReader(stream);
-            return reader.ReadToEnd();
+            throw new ArgumentException(
+                $"Resource '{resourceName}' not found in assembly '{_assembly.FullName}'.",
+                nameof(resourceName)
+            );
         }
-
-        /// <summary>
-        /// Lists available embedded template resource names without the ".tplt" extension.
-        /// </summary>
-        public IEnumerable<string> ListTemplates()
-            => _assembly.GetManifestResourceNames()
-                .Where(r => r.EndsWith(".hbs", StringComparison.OrdinalIgnoreCase))
-                .Select(r => Path.GetFileNameWithoutExtension(r));
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
+    }
+    /// <summary>
+    /// Lists partial template names
+    /// </summary>
+    public IEnumerable<string> GetPartialTemplateNames()
+    {
+        return EnumToInfo.Values
+            .Where(v => v.IsPartial)
+            .Select(v => v.Name);
     }
 }

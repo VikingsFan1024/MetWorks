@@ -1,0 +1,14 @@
+{
+  "GenerationTimeRoundTripUtc": "2026-01-01T12:00:00.0000000Z",
+  "Namespace": "ServiceRegistry",
+  "ContainerClass": "Registry",
+  "TemplateRequested": "Accessors",
+  "Instances": [
+    {
+      "Name": "TheUDPSettingsRepository",
+      "ClassQualified": "Settings.SettingsRepository",
+      "InterfaceQualified": "InterfaceDefinition.ISettingsRepository",
+      "IsArray": false
+    }
+  ]
+}

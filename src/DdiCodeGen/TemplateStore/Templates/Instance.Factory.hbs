@@ -1,0 +1,32 @@
+// Template:            Instance.Factory
+// Version:             1.1
+// Template Requested:  {{TemplateRequested}}
+{{> File.Header}}
+
+namespace {{Namespace}}
+{
+    // The InstanceFactory encapsulates per-instance creation logic.
+    // Declared as partial to allow modularization if needed.
+    // It handles both element-driven and assignment-driven construction,
+    // and immediately registers the created instance with the Registry.
+    internal static partial class {{Instance.Name}}_InstanceFactory
+    {
+        public static {{Instance.ClassQualified}}{{#if Instance.IsArray}}[]{{else}}{{/if}} Create({{ContainerClass}} registry)
+        {
+            {{#if Instance.HasElements}}
+            // Element-driven instance: build via ElementsInitializer.
+            // This always returns the concrete class of the named instance.
+            var instance = {{Instance.Name}}_ElementsInitializer.CreateElements(registry);
+            {{else}}
+            // Assignment-driven instance: construct with new().
+            // This is always valid because ContainerClass is a concrete class.
+            var instance = new {{Instance.ClassQualified}}();
+            {{/if}}
+
+            // Register immediately so other instances can reference it.
+            registry.Register{{Instance.Name}}(instance);
+
+            return instance;
+        }
+    }
+}

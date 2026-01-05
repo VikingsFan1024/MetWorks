@@ -1,9 +1,0 @@
-global using System.IO;
-global using DdiCodeGen.Dtos.Canonical;
-global using DdiCodeGen.Dtos.Raw;
-global using DdiCodeGen.Dtos.Internal;
-global using System.Collections.Generic;
-global using System;
-global using System.Linq;
-global using DdiCodeGen.StringExtensions;
-global using YamlDotNet.RepresentationModel;
