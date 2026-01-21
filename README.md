@@ -1,6 +1,6 @@
 # MetWorks
 
-Monorepo for MetWorks projects. Each assembly lives under `src/<AssemblyName>` and tests live under `tests/<AssemblyName.Tests>`.
+Each assembly lives under `src/<AssemblyName>` and tests live under `tests/<AssemblyName.Tests>`.
 
 ## Quickstart
 
